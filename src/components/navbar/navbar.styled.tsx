@@ -71,7 +71,7 @@ export const Image = styled.img`
 //   height: 30px;
 //   width: 100%;
 // `
-// interface hasOver
+
 export const IconWrapper = styled.span<{hasHover?: boolean, left?: number, right?: number}>`
   ${({hasHover=false, left=null, right=null}) => css`
   left: ${left};
