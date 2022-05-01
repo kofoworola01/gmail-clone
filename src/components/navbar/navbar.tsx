@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState } from 'react'
 import Logo from './../../images/logo_gmail_lockup_default_2x_r2.png'
+import Tooltip from '../tooltip/tooltip'
 import {
   Menu,
   Search,
@@ -22,9 +23,18 @@ import {
 
 
 const Navbar = () => {
+
+  const [showTooltip, setShowTooltip] = useState(false)
+
+  const handleTooltipVisibility = () => {
+    setShowTooltip(true)
+    console.log('here')
+  }
+  console.log(showTooltip, 'showTooltip')
+  
   return (
 
-    <Wrapper>
+    <Wrapper >
       <IconWrapper hasHover>
         <Menu />
       </IconWrapper>
@@ -33,9 +43,12 @@ const Navbar = () => {
       <StyledInput>
         <Input placeholder='Search all conversations' />
         <IconWrapper hasHover left={0}>
-          <Search />
-        </IconWrapper>
+          <Tooltip text='Search' showTooltip={showTooltip} />
+          <Search onMouseOver={handleTooltipVisibility} 
+          onMouseLeave={() => setShowTooltip(false)} />       
+         </IconWrapper>
         <IconWrapper hasHover right={0}>
+          {/* <Tooltip text='Show Search Options' showTooltip={showTooltip} /> */}
           <Tune />
         </IconWrapper>
 
@@ -56,6 +69,9 @@ const Navbar = () => {
         <AppsRounded />
       </IconWrapper>
       {/* <Line /> */}
+      {/* <div onClick={showTooltip}>
+        kofo
+      </div> */}
     </Wrapper>
   )
 }
